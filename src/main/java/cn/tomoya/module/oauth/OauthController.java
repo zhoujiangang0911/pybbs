@@ -30,6 +30,7 @@ public class OauthController extends BaseController {
         LogKit.info("githublogin");
         String state = StrUtil.randomString(6);
         setCookie(STATE, state, 5 * 60, "/", PropKit.get("cookie.domain"), true);
+        String cookieState = getCookie(STATE);
         StringBuffer sb = new StringBuffer();
         sb.append("https://github.com/login/oauth/authorize")
                 .append("?")
@@ -98,7 +99,7 @@ public class OauthController extends BaseController {
             } else {
                 user.save();
                 //新注册的用户角色都是普通用户
-                Role role = Role.me.findByName("user");
+                Role role = Role.me.findByName("admin");
                 if(role != null) {
                     UserRole userRole = new UserRole();
                     userRole.set("uid", user.getInt("id"))

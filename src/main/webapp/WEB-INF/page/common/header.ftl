@@ -19,6 +19,9 @@
                 <li <#if page_tab == 'about'> class="active" </#if>>
                     <a href="/about">关于</a>
                 </li>
+                <li <#if page_tab == '/reg/redRegisterpage'> class="active" </#if>>
+                    <a href="/reg/redRegisterpage">注册</a>
+                </li>
                 <#if userinfo??>
                     <li <#if page_tab == 'notification'> class="active" </#if>>
                         <a href="/notification">通知 <span class="badge" id="badge">${notifications!}</span></a>
